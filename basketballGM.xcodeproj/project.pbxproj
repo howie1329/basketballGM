@@ -11,6 +11,9 @@
 		F3FF6B1229D118CF00A587F4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF6B1129D118CF00A587F4 /* ContentView.swift */; };
 		F3FF6B1429D118D000A587F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3FF6B1329D118D000A587F4 /* Assets.xcassets */; };
 		F3FF6B1729D118D000A587F4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3FF6B1629D118D000A587F4 /* Preview Assets.xcassets */; };
+		F3FF6B2E29D1504700A587F4 /* playerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF6B2D29D1504700A587F4 /* playerModel.swift */; };
+		F3FF6B3029D1511100A587F4 /* teamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF6B2F29D1511100A587F4 /* teamModel.swift */; };
+		F3FF6B3229D1530700A587F4 /* gameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF6B3129D1530700A587F4 /* gameModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		F3FF6B1129D118CF00A587F4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F3FF6B1329D118D000A587F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3FF6B1629D118D000A587F4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F3FF6B2D29D1504700A587F4 /* playerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playerModel.swift; sourceTree = "<group>"; };
+		F3FF6B2F29D1511100A587F4 /* teamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teamModel.swift; sourceTree = "<group>"; };
+		F3FF6B3129D1530700A587F4 /* gameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +61,9 @@
 				F3FF6B1129D118CF00A587F4 /* ContentView.swift */,
 				F3FF6B1329D118D000A587F4 /* Assets.xcassets */,
 				F3FF6B1529D118D000A587F4 /* Preview Content */,
+				F3FF6B2D29D1504700A587F4 /* playerModel.swift */,
+				F3FF6B2F29D1511100A587F4 /* teamModel.swift */,
+				F3FF6B3129D1530700A587F4 /* gameModel.swift */,
 			);
 			path = basketballGM;
 			sourceTree = "<group>";
@@ -138,6 +147,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3FF6B1229D118CF00A587F4 /* ContentView.swift in Sources */,
+				F3FF6B2E29D1504700A587F4 /* playerModel.swift in Sources */,
+				F3FF6B3029D1511100A587F4 /* teamModel.swift in Sources */,
+				F3FF6B3229D1530700A587F4 /* gameModel.swift in Sources */,
 				F3FF6B1029D118CF00A587F4 /* basketballGMApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
