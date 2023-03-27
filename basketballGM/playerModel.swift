@@ -48,20 +48,20 @@ class player{
     var defensiveRating:Int
     var insideDefense:Int
     var outsideDefense:Int
-    var team:String
+    var playerName:String
     var playerTends: playerTend
     var buildName:String
     
     
     
-    init(id: UUID, offenseRating: Int, insideShotRating: Int, outsideShotRating: Int,passRating:Int, defensiveRating: Int,insideDefense:Int,outsideDefense:Int, team: String) {
+    init(id: UUID, offenseRating: Int, insideShotRating: Int, outsideShotRating: Int,passRating:Int, defensiveRating: Int,insideDefense:Int,outsideDefense:Int, playerName: String) {
         self.id = id
         self.offenseRating = offenseRating
         self.insideShotRating = insideShotRating
         self.outsideShotRating = outsideShotRating
         self.passRating = passRating
         self.defensiveRating = defensiveRating
-        self.team = team
+        self.playerName = playerName
         var choice = Int.random(in: 0...4)
         var build = buildFinder(choice: choice)
         self.buildName = build
@@ -98,5 +98,5 @@ func makePlayer(name:String) -> player{
     let outsideDefense = Int.random(in: 1...99)
     let defense = (insideDefense + outsideDefense) / 2
     
-    return player(id: UUID(), offenseRating: offense, insideShotRating: inside, outsideShotRating: outside, passRating: pass, defensiveRating: defense,insideDefense: insideDefense,outsideDefense: outsideDefense, team: name)
+    return player(id: UUID(), offenseRating: offense, insideShotRating: inside, outsideShotRating: outside, passRating: pass, defensiveRating: defense,insideDefense: insideDefense,outsideDefense: outsideDefense, playerName: name)
 }

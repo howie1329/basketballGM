@@ -20,6 +20,15 @@ class team{
         self.defense = defense
         self.roster = roster
     }
+    
+    func showRoster(){
+        for player in roster{
+            print(player.playerName)
+            print(player.buildName)
+            print(player.offenseRating)
+            print(player.defensiveRating)
+        }
+    }
 }
 
 func makeTeam(name:String) -> team{
@@ -28,8 +37,8 @@ func makeTeam(name:String) -> team{
     var offenseTeamRating = 0
     var defenseTeamRating = 0
     
-    for _ in 1...5{
-        var tempPlayer = makePlayer(name: name)
+    for i in 1...5{
+        var tempPlayer = makePlayer(name: "Player \(i)")
         tempRoster.append(tempPlayer)
     }
     

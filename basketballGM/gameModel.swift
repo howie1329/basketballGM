@@ -58,7 +58,7 @@ class game{
             awayScore += gamePossesions(offTeam: awayTeam, defTeam: homeTeam)
         }
         
-        print("Game Finished: \n HomeScore: \(homeScore) \n AwayScore: \(awayScore)")
+        print("Game Finished: \n \(homeTeam.name): \(homeScore) \n \(awayTeam.name): \(awayScore)")
         print("HomeTeam: Off:\(homeTeam.offense) Def:\(homeTeam.defense) --- AwayTeam: Off:\(awayTeam.offense) Def:\(awayTeam.defense)")
         print("Home Team Stats")
         for player in homeTeam.roster{

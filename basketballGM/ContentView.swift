@@ -16,13 +16,22 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .onAppear(perform: {
-            for _ in 1...2{
+            var league = makeLeague()
+            league.showTeams()
+            league.setUpGames()
+            
+            for team in league.teams{
+                team.showRoster()
+                print("-----------")
+            }
+            
+           /* for _ in 1...2{
                 let team1 = makeTeam(name: "Warriors")
                 let team2 = makeTeam(name:"Cavs")
                 
                 let game = game(homeTeam: team1, awayTeam: team2)
                 game.runGame()
-            }
+            } */
             
         })
         .padding()
