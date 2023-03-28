@@ -11,7 +11,7 @@ import SwiftUI
 struct basketballGMApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
                 .environmentObject(DataModel())
         }
     }

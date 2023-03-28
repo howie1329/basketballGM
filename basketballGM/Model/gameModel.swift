@@ -44,7 +44,7 @@ class game{
         self.awayTeam = awayTeam
     }
     
-    func runGame(){
+    func runGame() -> ([UUID:playerStats], Int , Int){
         
         for item in homeTeam.roster{
             boxScore[item.id] = playerStats()
@@ -75,6 +75,9 @@ class game{
         for player in awayTeam.roster{
             print("\(boxScore[player.id])\n \(player.insideShotRating) \(player.outsideShotRating)")
         }
+        
+        return (boxScore , homeScore ,awayScore)
+        
     }
 }
 

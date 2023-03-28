@@ -33,6 +33,13 @@ class league{
         }
     }
     
+    func customGameSim(team1:team,team2:team) -> ([UUID:playerStats], Int ,Int){
+        let game = game(homeTeam: team1, awayTeam: team2)
+        let value = game.runGame()
+        
+        return value
+    }
+    
     
 }
 
