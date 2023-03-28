@@ -12,10 +12,12 @@ struct playerStats{
     var twoPointers = 0
     var threePointers = 0
     var totalPoints = 0
+    var assist = 0
     
-    init(twoPointers: Int = 0, threePointers: Int = 0) {
+    init(twoPointers: Int = 0, threePointers: Int = 0, assist:Int = 0) {
         self.twoPointers = twoPointers
         self.threePointers = threePointers
+        self.assist = assist
         self.totalPoints = (twoPointers * 2) + (threePointers * 3)
     }
     
@@ -53,9 +55,14 @@ class game{
             boxScore[item.id] = playerStats()
         }
         
-        for _ in 1...100{
-            homeScore += gamePossesions(offTeam: homeTeam, defTeam: awayTeam)
-            awayScore += gamePossesions(offTeam: awayTeam, defTeam: homeTeam)
+        
+        for player in homeTeam.roster{
+            boxScore[player.id] = findPlayerBoxScore(offTeam: homeTeam, defTeam: awayTeam, player: player)
+            homeScore += boxScore[player.id]!.totalPoints
+        }
+        for player in awayTeam.roster{
+            boxScore[player.id] = findPlayerBoxScore(offTeam: awayTeam, defTeam: homeTeam, player: player)
+            awayScore += boxScore[player.id]!.totalPoints
         }
         
         print("Game Finished: \n \(homeTeam.name): \(homeScore) \n \(awayTeam.name): \(awayScore)")
@@ -66,103 +73,23 @@ class game{
         }
         print("Away Team Stats")
         for player in awayTeam.roster{
-            print("\(boxScore[player.id])\n \(player.insideShotRating) \(player.outsideShotRating) \n \(player.playerTends.insideShot) \(player.playerTends.outsideShot)")
+            print("\(boxScore[player.id])\n \(player.insideShotRating) \(player.outsideShotRating)")
         }
-        /*for item in boxScore{
-            for pl in homeTeam.roster{
-                if pl.id == item.key{
-                    print("HomeTeam... \(item)")
-                }
-            }
-        }
-        for item in boxScore{
-            for pl in awayTeam.roster{
-                if pl.id == item.key{
-                    print("AwayTeam... \(item)")
-                }
-            }
-        } */
-    }
-    
-    func gamePossesions(offTeam: team, defTeam:team) -> Int{
-        var offPlayer = offTeam.roster.randomElement()!
-        var defPlayer = defTeam.roster.randomElement()!
-        
-        //print("oFF Player: \(offPlayer.offenseRating) defPlayer \(defPlayer.defensiveRating)")
-        
-        let offMove = getOffMove(offPlayer: offPlayer)
-        let defMove = getDefMove(defPlayer: defPlayer, offMove: offMove.0)
-        
-        if offMove.1 > defMove{
-            switch offMove.0{
-            case "insideShot":
-                boxScore[offPlayer.id]!.twoPointers += 1
-                boxScore[offPlayer.id]!.updatePoints()
-                return 2
-            case "outsideShot":
-                boxScore[offPlayer.id]!.threePointers += 1
-                boxScore[offPlayer.id]!.updatePoints()
-                return 3
-            case "passToShot":
-                return gamePossesions(offTeam: offTeam, defTeam: defTeam)
-            default:
-                return gamePossesions(offTeam: offTeam, defTeam: defTeam)
-            }
-        }
-        return 0
-        
-        /*if offPlayer.offenseRating > defPlayer.defensiveRating {
-            var choice = Int.random(in: 0...100)
-            
-            if offPlayer.playerTends.insideShot.contains(choice){
-                if offPlayer.insideShotRating > defPlayer.insideDefense{
-                    boxScore[offPlayer.id]!.twoPointers += 1
-                    boxScore[offPlayer.id]!.updatePoints()
-                    return 2
-                }
-                return 0
-                
-            }else if offPlayer.playerTends.outsideShot.contains(choice){
-                if offPlayer.outsideShotRating > defPlayer.outsideDefense{
-                    boxScore[offPlayer.id]!.threePointers += 1
-                    boxScore[offPlayer.id]!.updatePoints()
-                    return 3
-                }
-                return 0
-            }
-            return 0
-        }
-        return 0 */
     }
 }
 
-func getOffMove(offPlayer:player) -> (String, Int){
-    let choice = Int.random(in: 0...100)
-    switch choice{
-    case offPlayer.playerTends.insideShot:
-        return ("insideShot", offPlayer.insideShotRating)
-    case offPlayer.playerTends.outsideShot:
-        return ("outsideShot", offPlayer.outsideShotRating)
-    case offPlayer.playerTends.passToShot:
-        return ("passToShot", offPlayer.passRating)
-    default:
-        return getOffMove(offPlayer: offPlayer)
-        
-    }
-}
-
-func getDefMove(defPlayer:player, offMove:String) -> Int{
+func findPlayerBoxScore(offTeam: team,defTeam:team,player: player) -> playerStats{
+    let insideFieldGoal = (player.insideShotRating + offTeam.passing - defTeam.insideDefense) / 10
+    let outsideFieldGoal = (player.outsideShotRating + offTeam.passing - defTeam.outsideDefense) / 11
+    let assistValue = (player.passRating + offTeam.insideScoring + offTeam.outsideScoring - defTeam.insideDefense - defTeam.outsideDefense) / 10
     
-    switch offMove{
-    case "insideShot":
-        return defPlayer.insideDefense
-    case "outsideShot":
-        return defPlayer.outsideDefense
-    case "passToShot":
-        return defPlayer.defensiveRating
-    default:
-        return getDefMove(defPlayer: defPlayer, offMove: offMove)
-    }
+    let inside = insideFieldGoal > 0 ? insideFieldGoal : 0
+    let outside = outsideFieldGoal > 0 ? outsideFieldGoal : 0
+    let assist = assistValue > 0 ? assistValue : 0
+    
+    print("\(inside) \(outside) \(assist)")
+    
+    return playerStats(twoPointers: inside,threePointers: outside,assist: assist)
 }
 
 

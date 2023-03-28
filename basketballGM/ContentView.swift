@@ -18,12 +18,15 @@ struct ContentView: View {
         .onAppear(perform: {
             var league = makeLeague()
             league.showTeams()
-            league.setUpGames()
+            for _ in 0...5{
+                league.setUpGames()
+            }
             
-            for team in league.teams{
+            
+            /*for team in league.teams{
                 team.showRoster()
                 print("-----------")
-            }
+            } */
             
            /* for _ in 1...2{
                 let team1 = makeTeam(name: "Warriors")

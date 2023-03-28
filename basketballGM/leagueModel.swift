@@ -23,10 +23,10 @@ class league{
     }
     
     func setUpGames(){
-        var team1 = teams[Int.random(in: 0...10)]
-        var team2 = teams[Int.random(in: 0...10)]
+        let team1 = teams[Int.random(in: 0...9)]
+        let team2 = teams[Int.random(in: 0...9)]
         if team1.name != team2.name{
-            var game = game(homeTeam: team1, awayTeam: team2)
+            let game = game(homeTeam: team1, awayTeam: team2)
             game.runGame()
         }else{
             setUpGames()
