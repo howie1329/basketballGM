@@ -8,7 +8,7 @@
 import Foundation
 
 
-class player{
+class player: Identifiable{
     
     var id: UUID
     var offenseRating: Int

@@ -15,6 +15,8 @@
 		F3FF6B3029D1511100A587F4 /* teamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF6B2F29D1511100A587F4 /* teamModel.swift */; };
 		F3FF6B3229D1530700A587F4 /* gameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF6B3129D1530700A587F4 /* gameModel.swift */; };
 		F3FF6B3429D205F700A587F4 /* leagueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF6B3329D205F700A587F4 /* leagueModel.swift */; };
+		F3FF6B3629D296D400A587F4 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF6B3529D296D400A587F4 /* DataModel.swift */; };
+		F3FF6B3A29D299C200A587F4 /* TeamRosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF6B3929D299C200A587F4 /* TeamRosterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		F3FF6B2F29D1511100A587F4 /* teamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = teamModel.swift; sourceTree = "<group>"; };
 		F3FF6B3129D1530700A587F4 /* gameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameModel.swift; sourceTree = "<group>"; };
 		F3FF6B3329D205F700A587F4 /* leagueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leagueModel.swift; sourceTree = "<group>"; };
+		F3FF6B3529D296D400A587F4 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		F3FF6B3929D299C200A587F4 /* TeamRosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRosterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,14 +63,12 @@
 		F3FF6B0E29D118CF00A587F4 /* basketballGM */ = {
 			isa = PBXGroup;
 			children = (
+				F3FF6B3529D296D400A587F4 /* DataModel.swift */,
+				F3FF6B3829D2999000A587F4 /* Model */,
+				F3FF6B3729D2998B00A587F4 /* View */,
 				F3FF6B0F29D118CF00A587F4 /* basketballGMApp.swift */,
-				F3FF6B1129D118CF00A587F4 /* ContentView.swift */,
 				F3FF6B1329D118D000A587F4 /* Assets.xcassets */,
 				F3FF6B1529D118D000A587F4 /* Preview Content */,
-				F3FF6B2D29D1504700A587F4 /* playerModel.swift */,
-				F3FF6B2F29D1511100A587F4 /* teamModel.swift */,
-				F3FF6B3129D1530700A587F4 /* gameModel.swift */,
-				F3FF6B3329D205F700A587F4 /* leagueModel.swift */,
 			);
 			path = basketballGM;
 			sourceTree = "<group>";
@@ -77,6 +79,26 @@
 				F3FF6B1629D118D000A587F4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F3FF6B3729D2998B00A587F4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F3FF6B1129D118CF00A587F4 /* ContentView.swift */,
+				F3FF6B3929D299C200A587F4 /* TeamRosterView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F3FF6B3829D2999000A587F4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F3FF6B2D29D1504700A587F4 /* playerModel.swift */,
+				F3FF6B2F29D1511100A587F4 /* teamModel.swift */,
+				F3FF6B3129D1530700A587F4 /* gameModel.swift */,
+				F3FF6B3329D205F700A587F4 /* leagueModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +171,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3FF6B3A29D299C200A587F4 /* TeamRosterView.swift in Sources */,
+				F3FF6B3629D296D400A587F4 /* DataModel.swift in Sources */,
 				F3FF6B1229D118CF00A587F4 /* ContentView.swift in Sources */,
 				F3FF6B2E29D1504700A587F4 /* playerModel.swift in Sources */,
 				F3FF6B3029D1511100A587F4 /* teamModel.swift in Sources */,

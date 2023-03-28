@@ -7,7 +7,7 @@
 
 import Foundation
 
-class team{
+class team: Identifiable{
     
     var name:String
     var offense:Int
