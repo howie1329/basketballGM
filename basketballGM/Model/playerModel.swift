@@ -30,6 +30,8 @@ class player: Identifiable{
     var playerName:String
     /// Build of player
     var buildName:String
+    var overallRating:Int
+    var capHit:Int
     
     
     
@@ -44,8 +46,26 @@ class player: Identifiable{
         self.buildName = build
         self.insideDefense = insideDefense
         self.outsideDefense = outsideDefense
+        self.overallRating = (self.offenseRating + self.defensiveRating) / 2
+        self.capHit = findCapHit(playerOverall: self.overallRating)
     }
     
+}
+
+func findCapHit(playerOverall:Int) -> Int{
+    
+    switch playerOverall{
+    case 0...25:
+        return 1
+    case 26...50:
+        return 2
+    case 51...80:
+        return 3
+    case 81...100:
+        return 4
+    default:
+        return 1
+    }
 }
 
 ///  Take a random number between 1 - 4 and gives a String repesenting a build type
@@ -81,11 +101,11 @@ func makePlayer(name:String) ->player{
     
     switch build{
     case "outside":
-        return player(id: id, insideShotRating: Int.random(in: 0...30), outsideShotRating: Int.random(in: 60...100), passRating: Int.random(in: 0...50), insideDefense: Int.random(in: 0...35), outsideDefense: Int.random(in: 0...100), playerName: name, build: build)
+        return player(id: id, insideShotRating: Int.random(in: 0...50), outsideShotRating: Int.random(in: 75...100), passRating: Int.random(in: 0...65), insideDefense: Int.random(in: 0...50), outsideDefense: Int.random(in: 30...100), playerName: name, build: build)
     case "inside":
-        return player(id: id, insideShotRating: Int.random(in: 60...100), outsideShotRating: Int.random(in: 0...30), passRating: Int.random(in: 0...20), insideDefense: Int.random(in: 75...100), outsideDefense: Int.random(in: 50...100), playerName: name, build: build)
+        return player(id: id, insideShotRating: Int.random(in: 75...100), outsideShotRating: Int.random(in: 0...50), passRating: Int.random(in: 0...30), insideDefense: Int.random(in: 75...100), outsideDefense: Int.random(in: 65...100), playerName: name, build: build)
     case "balanced":
-        return player(id: id,  insideShotRating: Int.random(in: 25...75), outsideShotRating: Int.random(in: 25...75), passRating: Int.random(in: 25...75), insideDefense: Int.random(in: 25...75), outsideDefense: Int.random(in: 25...75), playerName: name, build: build)
+        return player(id: id,  insideShotRating: Int.random(in: 25...100), outsideShotRating: Int.random(in: 25...100), passRating: Int.random(in: 25...100), insideDefense: Int.random(in: 25...100), outsideDefense: Int.random(in: 25...100), playerName: name, build: build)
     case "point":
         return player(id: id,  insideShotRating: Int.random(in: 25...40), outsideShotRating: Int.random(in: 30...85), passRating: Int.random(in: 70...100),  insideDefense: Int.random(in: 0...50), outsideDefense: Int.random(in: 30...100), playerName: name, build: build)
     default:

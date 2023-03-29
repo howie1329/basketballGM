@@ -24,13 +24,18 @@ struct FreeAgentView: View {
                     Button {
                         model.currentLeague.addFreeAgent(free: player, newTeam: newTeam)
                     } label: {
-                        HStack{
-                            Text(player.playerName)
-                            Text("Off: \(player.offenseRating)")
-                            Text("Def: \(player.defensiveRating)")
-                            Text("\(player.buildName.capitalized)")
+                        VStack{
+                            HStack{
+                                Text(player.playerName)
+                                Text("Cap Hit: \(player.capHit)")
+                            }
+                            HStack{
+                                Text("Off: \(player.offenseRating)")
+                                Text("Def: \(player.defensiveRating)")
+                                Text("\(player.buildName.capitalized)")
+                            }
+                            .frame(maxWidth:.infinity,alignment: .center)
                         }
-                        .frame(maxWidth:.infinity,alignment: .center)
                     }
                     
                     

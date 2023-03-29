@@ -22,10 +22,11 @@ class team: Identifiable{
     var outsideDefense:Int
     /// Roster of team... an array filled with ``player`` classes
     var roster: [player]
+    var capRoom: Int
     
     
     
-    init(name: String, offense: Int, defense: Int, passing: Int, insideScoring: Int, outsideScoring: Int, insideDefense: Int, outsideDefense: Int, roster: [player]) {
+    init(name: String, offense: Int, defense: Int, passing: Int, insideScoring: Int, outsideScoring: Int, insideDefense: Int, outsideDefense: Int, roster: [player], capRoom:Int) {
         self.name = name
         self.offense = offense
         self.defense = defense
@@ -35,6 +36,7 @@ class team: Identifiable{
         self.insideDefense = insideDefense
         self.outsideDefense = outsideDefense
         self.roster = roster
+        self.capRoom = capRoom
     }
     
     /// prints ``roster`` to the console
@@ -97,10 +99,19 @@ func makeTeam(name:String) -> team{
     var outsideScoring = 0
     var insideDefense = 0
     var outsideDefense = 0
+    var capSpace = 14
     
     for i in 1...5{
+        var tempCap = capSpace
         let tempPlayer = makePlayer(name: "Player \(i)")
-        tempRoster.append(tempPlayer)
+        if (tempCap - tempPlayer.capHit) > 0{
+            tempRoster.append(tempPlayer)
+            capSpace = capSpace - tempPlayer.capHit
+            print("\(name): Current Cap: \(capSpace) New Player: \(tempPlayer.capHit) Roster Size:\(tempRoster.count)")
+        }else{
+            makeTeam(name: name)
+        }
+        
     }
     
     for item in tempRoster{
@@ -122,6 +133,8 @@ func makeTeam(name:String) -> team{
     insideDefense = insideDefense / 5
     outsideDefense = outsideDefense / 5
     
-    return team(name: name, offense: offenseTeamRating, defense: defenseTeamRating,passing: passing,insideScoring: insideScoring,outsideScoring: outsideScoring, insideDefense: insideDefense,outsideDefense: outsideDefense, roster: tempRoster)
+    
+    
+    return team(name: name, offense: offenseTeamRating, defense: defenseTeamRating,passing: passing,insideScoring: insideScoring,outsideScoring: outsideScoring, insideDefense: insideDefense,outsideDefense: outsideDefense, roster: tempRoster, capRoom: capSpace)
     
 }
