@@ -9,10 +9,15 @@ import Foundation
 
 class DataModel: ObservableObject {
     
-    var currentLeague: league
+    @Published var currentLeague: league
     
     init(){
         currentLeague = makeLeague()
+    }
+    
+    func update(){
+        var saveLeague = currentLeague
+        currentLeague = saveLeague
     }
     
     

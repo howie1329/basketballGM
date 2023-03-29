@@ -7,11 +7,16 @@
 
 import Foundation
 
+/// Holds player stats
 struct playerStats{
-   
+    
+    /// Two pointers made
     var twoPointers = 0
+    /// Three pointers made
     var threePointers = 0
+    /// holds total points  - ``twoPointers`` * ``threePointers``
     var totalPoints = 0
+    /// Assists
     var assist = 0
     
     init(twoPointers: Int = 0, threePointers: Int = 0, assist:Int = 0) {
@@ -21,6 +26,7 @@ struct playerStats{
         self.totalPoints = (twoPointers * 2) + (threePointers * 3)
     }
     
+    /// Updates total points
     mutating func updatePoints(){
         totalPoints = (twoPointers * 2) + (threePointers * 3)
     }
@@ -28,6 +34,8 @@ struct playerStats{
     
 }
 
+/// Game class
+///  - Holds home and away teams and handles simulation of game
 class game{
     
     var homeScore:Int
@@ -44,6 +52,9 @@ class game{
         self.awayTeam = awayTeam
     }
     
+    /// Simulate game
+    ///
+    /// - Returns:  A tuple that includes an array that holds all players UUID and playerStats, homeScore, awayScore
     func runGame() -> ([UUID:playerStats], Int , Int){
         
         for item in homeTeam.roster{
@@ -81,6 +92,12 @@ class game{
     }
 }
 
+/// Takes players ratings and finds stat for a game
+///
+/// - Parameter offTeam: takes in offense team on possesion
+/// - Parameter defTeam: takes in Defensive team on possesion
+/// - Parameter player:  Takes a player for creating box score for
+/// - Returns: playerStats
 func findPlayerBoxScore(offTeam: team,defTeam:team,player: player) -> playerStats{
     let insideFieldGoal = (player.insideShotRating + offTeam.passing - defTeam.insideDefense) / 10
     let outsideFieldGoal = (player.outsideShotRating + offTeam.passing - defTeam.outsideDefense) / 11

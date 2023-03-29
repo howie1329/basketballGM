@@ -7,29 +7,39 @@
 
 import Foundation
 
-
+/// A class that represents a player
 class player: Identifiable{
     
+    /// ID: the unique id for each player
     var id: UUID
+    /// Offenseive Rating
     var offenseRating: Int
+    /// Inside Shot Rating - Effects shots made
     var insideShotRating: Int
+    /// Outside Shot Rating - Effects threes made
     var outsideShotRating: Int
+    /// Passing Rating - Effects Assist Number
     var passRating:Int
+    /// Overall Defensive Rating
     var defensiveRating:Int
+    /// Inside Defense
     var insideDefense:Int
+    /// Outside Defense
     var outsideDefense:Int
+    /// The player name
     var playerName:String
+    /// Build of player
     var buildName:String
     
     
     
-    init(id: UUID, offenseRating: Int, insideShotRating: Int, outsideShotRating: Int,passRating:Int, defensiveRating: Int,insideDefense:Int,outsideDefense:Int, playerName: String, build:String) {
+    init(id: UUID, insideShotRating: Int, outsideShotRating: Int,passRating:Int, insideDefense:Int,outsideDefense:Int, playerName: String, build:String) {
         self.id = id
-        self.offenseRating = offenseRating
+        self.offenseRating = (insideShotRating + outsideShotRating + passRating) / 3
         self.insideShotRating = insideShotRating
         self.outsideShotRating = outsideShotRating
         self.passRating = passRating
-        self.defensiveRating = defensiveRating
+        self.defensiveRating = (insideDefense + outsideDefense) / 2
         self.playerName = playerName
         self.buildName = build
         self.insideDefense = insideDefense
@@ -38,8 +48,13 @@ class player: Identifiable{
     
 }
 
+///  Take a random number between 1 - 4 and gives a String repesenting a build type
+///
+/// - Returns: A String which is equal to a build type
 func buildFinder() -> String{
+    /// Creates a random number to choice from
     var randomNumber = Int.random(in: 0...4)
+    /// Takes random number and returns a string of a player build
     switch randomNumber{
     case 1:
         return "outside"
@@ -54,22 +69,27 @@ func buildFinder() -> String{
     }
 }
 
+/// Creates a player
+///
+/// - Parameter name: A string that respsents a players name
+/// - Returns: A new player class
 func makePlayer(name:String) ->player{
     let id = UUID()
     
+    /// takes  return of ``buildFinder()``  and uses result to find player and ratings
     let build = buildFinder()
     
     switch build{
     case "outside":
-        return player(id: id, offenseRating: Int.random(in: 0...100), insideShotRating: Int.random(in: 0...30), outsideShotRating: Int.random(in: 60...100), passRating: Int.random(in: 0...50), defensiveRating: Int.random(in: 0...75), insideDefense: Int.random(in: 0...35), outsideDefense: Int.random(in: 0...100), playerName: name, build: build)
+        return player(id: id, insideShotRating: Int.random(in: 0...30), outsideShotRating: Int.random(in: 60...100), passRating: Int.random(in: 0...50), insideDefense: Int.random(in: 0...35), outsideDefense: Int.random(in: 0...100), playerName: name, build: build)
     case "inside":
-        return player(id: id, offenseRating: Int.random(in: 0...100), insideShotRating: Int.random(in: 60...100), outsideShotRating: Int.random(in: 0...30), passRating: Int.random(in: 0...20), defensiveRating: Int.random(in: 70...100), insideDefense: Int.random(in: 75...100), outsideDefense: Int.random(in: 50...100), playerName: name, build: build)
+        return player(id: id, insideShotRating: Int.random(in: 60...100), outsideShotRating: Int.random(in: 0...30), passRating: Int.random(in: 0...20), insideDefense: Int.random(in: 75...100), outsideDefense: Int.random(in: 50...100), playerName: name, build: build)
     case "balanced":
-        return player(id: id, offenseRating: Int.random(in: 0...100), insideShotRating: Int.random(in: 25...75), outsideShotRating: Int.random(in: 25...75), passRating: Int.random(in: 25...75), defensiveRating: Int.random(in: 0...100), insideDefense: Int.random(in: 25...75), outsideDefense: Int.random(in: 25...75), playerName: name, build: build)
+        return player(id: id,  insideShotRating: Int.random(in: 25...75), outsideShotRating: Int.random(in: 25...75), passRating: Int.random(in: 25...75), insideDefense: Int.random(in: 25...75), outsideDefense: Int.random(in: 25...75), playerName: name, build: build)
     case "point":
-        return player(id: id, offenseRating: Int.random(in: 0...100), insideShotRating: Int.random(in: 25...40), outsideShotRating: Int.random(in: 30...85), passRating: Int.random(in: 70...100), defensiveRating: Int.random(in: 0...100), insideDefense: Int.random(in: 0...50), outsideDefense: Int.random(in: 30...100), playerName: name, build: build)
+        return player(id: id,  insideShotRating: Int.random(in: 25...40), outsideShotRating: Int.random(in: 30...85), passRating: Int.random(in: 70...100),  insideDefense: Int.random(in: 0...50), outsideDefense: Int.random(in: 30...100), playerName: name, build: build)
     default:
-        return player(id: id, offenseRating: Int.random(in: 0...100), insideShotRating: Int.random(in: 25...75), outsideShotRating: Int.random(in: 25...75), passRating: Int.random(in: 25...75), defensiveRating: Int.random(in: 0...100), insideDefense: Int.random(in: 25...75), outsideDefense: Int.random(in: 25...75), playerName: name, build: build)
+        return player(id: id,  insideShotRating: Int.random(in: 25...75), outsideShotRating: Int.random(in: 25...75), passRating: Int.random(in: 25...75), insideDefense: Int.random(in: 25...75), outsideDefense: Int.random(in: 25...75), playerName: name, build: build)
     }
     
 }

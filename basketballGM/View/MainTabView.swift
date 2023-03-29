@@ -17,7 +17,12 @@ struct MainTabView: View {
                 }
             GameView()
                 .tabItem {
-                    Image(systemName: "pencil")
+                    Image(systemName: "basketball")
+                }
+            FreeAgentView()
+                .tabItem {
+                    Image(systemName: "basket")
+                    Text("Free Agents")
                 }
         }
     }

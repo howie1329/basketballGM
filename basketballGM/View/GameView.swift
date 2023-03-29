@@ -39,7 +39,7 @@ struct GameView: View {
                     Section(header:Text("HomeScore: \(gameStats.1)")){
                         List{
                             ForEach(team1!.roster){player in
-                                VStack{
+                                HStack{
                                     Text("Total: \(gameStats.0[player.id]!.totalPoints)")
                                     Text("Twos: \(gameStats.0[player.id]!.twoPointers)")
                                     Text("Threes: \(gameStats.0[player.id]!.threePointers)")
@@ -52,7 +52,7 @@ struct GameView: View {
                     Section(header:Text("AwayScore: \(gameStats.2)")){
                         List{
                             ForEach(team2!.roster){player in
-                                VStack{
+                                HStack{
                                     Text("Total: \(gameStats.0[player.id]!.totalPoints)")
                                     Text("Twos: \(gameStats.0[player.id]!.twoPointers)")
                                     Text("Threes: \(gameStats.0[player.id]!.threePointers)")

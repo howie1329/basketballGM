@@ -27,6 +27,9 @@ struct TeamRosterView: View {
                     
                 }
             }
+            .onAppear {
+                currentTeam.updateStats()
+            }
         }
     }
 }

@@ -33,11 +33,7 @@ struct ContentView: View {
                 }
             }
             .onAppear(perform: {
-                var league = makeLeague()
-                league.showTeams()
-                for _ in 0...5{
-                    league.setUpGames()
-                }
+                model.update()
             })
         }
     }
