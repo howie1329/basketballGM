@@ -10,19 +10,28 @@ import SwiftUI
 struct FreeAgentView: View {
     @EnvironmentObject var model:DataModel
     @State var newTeam:String = "Team 1"
+    @State var freeAgentBool = true
     var body: some View {
         VStack{
             Text("Free Agents")
-            Picker("New Team", selection: $newTeam) {
-                ForEach(model.currentLeague.teams){
-                    Text($0.name)
-                        .tag($0.name)
+            HStack{
+                Picker("New Team", selection: $newTeam) {
+                    ForEach(model.currentLeague.teams){
+                        Text($0.name)
+                            .tag($0.name)
+                    }
+                }
+                
+                if freeAgentBool == false{
+                    Text("Player Could Not Be Added")
+                    Text("Not Enough Cap Room")
                 }
             }
+            
             List{
                 ForEach(model.currentLeague.freeAgents){player in
                     Button {
-                        model.currentLeague.addFreeAgent(free: player, newTeam: newTeam)
+                       freeAgentBool = model.currentLeague.addFreeAgent(free: player, newTeam: newTeam)
                     } label: {
                         VStack{
                             HStack{

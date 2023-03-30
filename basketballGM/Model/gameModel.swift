@@ -52,6 +52,39 @@ class game{
         self.awayTeam = awayTeam
     }
     
+    func getPossession(offTeam:team, defTeam:team) -> Int{
+        var offPlayer = offTeam.roster.randomElement()!
+        var defPlayer = defTeam.roster.randomElement()!
+        
+        var choice = Int.random(in: 0...2)
+        
+        switch choice {
+        case 0:
+            if offPlayer.insideShotRating > defPlayer.insideDefense{
+                boxScore[offPlayer.id]?.twoPointers += 1
+                boxScore[offPlayer.id]?.updatePoints()
+                return 2
+            }
+        case 1:
+            if offPlayer.outsideShotRating > defPlayer.outsideShotRating{
+                boxScore[offPlayer.id]?.threePointers += 1
+                boxScore[offPlayer.id]?.updatePoints()
+                return 3
+            }
+        case 2:
+            if offPlayer.passRating > defPlayer.defensiveRating{
+                var res = getPossession(offTeam: offTeam, defTeam: defTeam)
+                if res > 0{
+                    boxScore[offPlayer.id]?.assist += 1
+                    boxScore[offPlayer.id]?.updatePoints()
+                }
+            }
+        default:
+            getPossession(offTeam: offTeam, defTeam: defTeam)
+        }
+        return 0
+    }
+    
     /// Simulate game
     ///
     /// - Returns:  A tuple that includes an array that holds all players UUID and playerStats, homeScore, awayScore
@@ -66,15 +99,11 @@ class game{
             boxScore[item.id] = playerStats()
         }
         
+        for _ in 0...100{
+            homeScore += getPossession(offTeam: homeTeam, defTeam: awayTeam)
+            awayScore += getPossession(offTeam: awayTeam, defTeam: homeTeam)
+        }
         
-        for player in homeTeam.roster{
-            boxScore[player.id] = findPlayerBoxScore(offTeam: homeTeam, defTeam: awayTeam, player: player)
-            homeScore += boxScore[player.id]!.totalPoints
-        }
-        for player in awayTeam.roster{
-            boxScore[player.id] = findPlayerBoxScore(offTeam: awayTeam, defTeam: homeTeam, player: player)
-            awayScore += boxScore[player.id]!.totalPoints
-        }
         
         print("Game Finished: \n \(homeTeam.name): \(homeScore) \n \(awayTeam.name): \(awayScore)")
         print("HomeTeam: Off:\(homeTeam.offense) Def:\(homeTeam.defense) --- AwayTeam: Off:\(awayTeam.offense) Def:\(awayTeam.defense)")
@@ -91,6 +120,9 @@ class game{
         
     }
 }
+
+
+
 
 /// Takes players ratings and finds stat for a game
 ///

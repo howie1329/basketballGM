@@ -47,7 +47,7 @@ class league{
         return value
     }
     
-    func addFreeAgent(free:player, newTeam:String){
+    func addFreeAgent(free:player, newTeam:String)-> Bool{
         let index = freeAgents.firstIndex { player in
             player.id == free.id
         }
@@ -55,9 +55,16 @@ class league{
             team.name == newTeam
         }
         let team = teams[teamIndex!]
-        freeAgents.remove(at: index!)
-        team.roster.append(free)
-        team.updateStats()
+        let teamCapSpace = team.capRoom
+        if (teamCapSpace - free.capHit) >= 0{
+            freeAgents.remove(at: index!)
+            team.roster.append(free)
+            team.updateStats()
+            return true
+        }else{
+            return false
+        }
+        
     }
 }
 

@@ -58,6 +58,7 @@ class team: Identifiable{
         var totalOutside = 0
         var totalInsideDef = 0
         var totalOutsideDef = 0
+        var capSpace = 29
         
         for player in roster{
             totalOffense += player.offenseRating
@@ -67,6 +68,7 @@ class team: Identifiable{
             totalOutside += player.outsideShotRating
             totalInsideDef += player.insideDefense
             totalOutsideDef += player.outsideDefense
+            capSpace -= player.capHit
         }
         self.passing = totalPassing / roster.count
         self.insideScoring = totalInside / roster.count
@@ -76,6 +78,8 @@ class team: Identifiable{
         
         self.offense = totalOffense / roster.count
         self.defense = totalDefense / roster.count
+        
+        self.capRoom = capSpace
         
         print("Total Offense: \(totalOffense)")
         print("Total Defense: \(totalDefense)")
@@ -99,9 +103,9 @@ func makeTeam(name:String) -> team{
     var outsideScoring = 0
     var insideDefense = 0
     var outsideDefense = 0
-    var capSpace = 14
+    var capSpace = 29
     
-    for i in 1...5{
+    for i in 1...10{
         var tempCap = capSpace
         let tempPlayer = makePlayer(name: "Player \(i)")
         if (tempCap - tempPlayer.capHit) > 0{
@@ -112,6 +116,10 @@ func makeTeam(name:String) -> team{
             makeTeam(name: name)
         }
         
+    }
+    
+    if tempRoster.count < 5{
+        makeTeam(name: name)
     }
     
     for item in tempRoster{
