@@ -73,7 +73,7 @@ func findCapHit(playerOverall:Int) -> Int{
 /// - Returns: A String which is equal to a build type
 func buildFinder() -> String{
     /// Creates a random number to choice from
-    var randomNumber = Int.random(in: 0...4)
+    let randomNumber = Int.random(in: 1...4)
     /// Takes random number and returns a string of a player build
     switch randomNumber{
     case 1:

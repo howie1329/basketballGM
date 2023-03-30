@@ -40,24 +40,43 @@ struct GameView: View {
                         List{
                             ForEach(team1!.roster){player in
                                 HStack{
-                                    Text("Total: \(gameStats.0[player.id]!.totalPoints)")
-                                    Text("Twos: \(gameStats.0[player.id]!.twoPointers)")
-                                    Text("Threes: \(gameStats.0[player.id]!.threePointers)")
-                                    Text("Assist: \(gameStats.0[player.id]!.assist)")
+                                    VStack{
+                                        HStack{
+                                            Text(player.playerName)
+                                            Text("\(gameStats.0[player.id]!.totalPoints) PTs")
+                                        }
+                                        HStack{
+                                            Text(" \(gameStats.0[player.id]!.twoPointers) FGM")
+                                            Text(" \(gameStats.0[player.id]!.threePointers) 3PM")
+                                            Text(" \(gameStats.0[player.id]!.assist) AST")
+                                        }
+                                    }
+                                    
                                 }
+                                .frame(maxWidth:.infinity)
                                 
                             }
                         }
                     }
+                    Divider()
                     Section(header:Text("AwayScore: \(gameStats.2)")){
                         List{
                             ForEach(team2!.roster){player in
                                 HStack{
-                                    Text("Total: \(gameStats.0[player.id]!.totalPoints)")
-                                    Text("Twos: \(gameStats.0[player.id]!.twoPointers)")
-                                    Text("Threes: \(gameStats.0[player.id]!.threePointers)")
-                                    Text("Assist: \(gameStats.0[player.id]!.assist)")
+                                    VStack{
+                                        HStack{
+                                            Text(player.playerName)
+                                            Text("\(gameStats.0[player.id]!.totalPoints) PTs")
+                                        }
+                                        HStack{
+                                            Text(" \(gameStats.0[player.id]!.twoPointers) FGM")
+                                            Text(" \(gameStats.0[player.id]!.threePointers) 3PM")
+                                            Text(" \(gameStats.0[player.id]!.assist) AST")
+                                        }
+                                    }
+                                    
                                 }
+                                .frame(maxWidth:.infinity)
                                 
                             }
                         }

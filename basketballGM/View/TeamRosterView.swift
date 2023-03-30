@@ -12,18 +12,38 @@ struct TeamRosterView: View {
     var currentTeam:team
     var body: some View {
         VStack{
-            Text(currentTeam.name)
+            HStack{
+                Text(currentTeam.name)
+                Text("Cap Space: \(currentTeam.capRoom)")
+            }
             List{
                 ForEach(currentTeam.roster){item in
-                    VStack{
-                        Text(item.playerName)
-                        HStack{
-                            Text("Type: \(item.buildName.capitalized)")
-                            Text("Offense: \(item.offenseRating)")
-                            Text("Defense: \(item.defensiveRating)")
+                    Button {
+                        // Will push to player info view
+                    } label: {
+                        VStack{
+                            Text(item.playerName)
+                            HStack{
+                                Text("Type: \(item.buildName.capitalized)")
+                                Text("Offense: \(item.offenseRating)")
+                                Text("Defense: \(item.defensiveRating)")
+                            }
+                            .frame(maxWidth:.infinity)
                         }
-                        .frame(maxWidth:.infinity)
                     }
+                    .swipeActions {
+                        Button(role:.destructive) {
+                            var index = currentTeam.roster.firstIndex { player in
+                                player.id == item.id
+                            }
+                            currentTeam.releasePlayer(playerIndex: index!)
+                        } label: {
+                            Image(systemName: "x.circle")
+                        }
+
+                    }
+
+                    
                     
                 }
             }

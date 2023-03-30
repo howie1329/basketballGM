@@ -88,6 +88,11 @@ class team: Identifiable{
         
         
     }
+    
+    func releasePlayer(playerIndex:Int){
+        roster.remove(at: playerIndex)
+        updateStats()
+    }
 }
 /// Creates a team
 ///
@@ -118,7 +123,7 @@ func makeTeam(name:String) -> team{
         
     }
     
-    if tempRoster.count < 5{
+    if tempRoster.count < 9{
         makeTeam(name: name)
     }
     
@@ -133,13 +138,13 @@ func makeTeam(name:String) -> team{
     }
 
     
-    offenseTeamRating = offenseTeamRating/5
-    defenseTeamRating = defenseTeamRating/5
-    passing = passing/5
-    insideScoring = insideScoring / 5
-    outsideScoring = outsideScoring / 5
-    insideDefense = insideDefense / 5
-    outsideDefense = outsideDefense / 5
+    offenseTeamRating = offenseTeamRating / tempRoster.count
+    defenseTeamRating = defenseTeamRating / tempRoster.count
+    passing = passing / tempRoster.count
+    insideScoring = insideScoring / tempRoster.count
+    outsideScoring = outsideScoring / tempRoster.count
+    insideDefense = insideDefense / tempRoster.count
+    outsideDefense = outsideDefense / tempRoster.count
     
     
     
