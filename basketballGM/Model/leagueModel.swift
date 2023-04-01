@@ -43,7 +43,9 @@ class league: ObservableObject{
             var todaysGames = schedule[currentDay].scheduledGames
             
             for g in todaysGames{
-                g.runGame()
+                if g.playedGame == false{
+                    g.runGame()
+                }
             }
             currentDay += 1
         }else{
@@ -51,9 +53,27 @@ class league: ObservableObject{
         }
     }
     
+    func simSeason(){
+        if currentDay != endDay{
+            for i in currentDay..<endDay{
+                print("test \(i)")
+                var todaysGames = schedule[i].scheduledGames
+                for g in todaysGames{
+                    if g.playedGame == false{
+                        g.runGame()
+                    }
+                }
+                currentDay += 1
+            }
+        }
+        else{
+            setSchedule()
+        }
+    }
+    
     func setSchedule(){
         var newDay:[days] = []
-        for day in 0...20{
+        for day in 0...72{
             var dayGame:[game] = []
             var finalDay:days = days(id: UUID(), dayNumber: 0, scheduledGames: [])
             for games in 0...10{
@@ -75,8 +95,8 @@ class league: ObservableObject{
     
     /// Takes two random teams and runs a game agaisnt each other
     func setUpGames() -> game{
-        let team1 = teams[Int.random(in: 0...9)]
-        let team2 = teams[Int.random(in: 0...9)]
+        let team1 = teams[Int.random(in: 0..<teams.count)]
+        let team2 = teams[Int.random(in: 0..<teams.count)]
         if team1.name != team2.name{
             let games = game(homeTeam: team1, awayTeam: team2)
             return games
@@ -123,12 +143,12 @@ func makeLeague() -> league{
     var tempTeamArr = [team]()
     var tempAgents = [player]()
     
-    for i in 1...10{
+    for i in 1...30{
         var team = makeTeam(name: "Team \(i)")
         tempTeamArr.append(team)
     }
     
-    for i in 1...50{
+    for i in 1...200{
         var agent = makePlayer(name: "FreeAgent \(i)")
         tempAgents.append(agent)
         

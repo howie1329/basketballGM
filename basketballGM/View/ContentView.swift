@@ -34,15 +34,27 @@ struct ContentView: View {
                             }
                         }
                     }
-                    Button{
-                        model.currentLeague.playTodaysGames()
-                        model.update()
-                    } label: {
-                        Text("Sim Day")
-                            .frame(maxWidth:.infinity)
+                    HStack{
+                        Button{
+                            model.currentLeague.playTodaysGames()
+                            model.update()
+                        } label: {
+                            Text("Sim Day")
+                                .frame(maxWidth:.infinity)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .padding(.horizontal)
+                        
+                        Button{
+                            model.currentLeague.simSeason()
+                            model.update()
+                        } label: {
+                            Text("Sim Season")
+                                .frame(maxWidth:.infinity)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .padding(.horizontal)
                     }
-                    .buttonStyle(.borderedProminent)
-                    .padding(.horizontal)
                     
                 }
                 .onAppear(perform: {
