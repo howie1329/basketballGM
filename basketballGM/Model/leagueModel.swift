@@ -7,16 +7,24 @@
 
 import Foundation
 
+struct days{
+    
+    var dayNumber:Int
+    var scheduledGames:[game]
+}
+
 /// League class which holds an array of teams and a array of games
 class league{
     var teams: [team]
     var games:[game]
     var freeAgents:[player]
+    var schedule: [days] = []
     
     init(teams: [team], freeAgent: [player] = []) {
         self.teams = teams
         self.games = [game]()
         self.freeAgents = freeAgent
+        setSchedule()
     }
     
     func showTeams(){
@@ -25,15 +33,35 @@ class league{
         }
     }
     
+    func setSchedule(){
+        var newDay:[days] = []
+        for day in 0...9{
+            var dayGame:[game] = []
+            var finalDay:days = days(dayNumber: 0, scheduledGames: [])
+            for games in 0...4{
+                var newGame = setUpGames()
+                dayGame.append(newGame)
+                finalDay = days(dayNumber: day, scheduledGames: dayGame)
+            }
+            newDay.append(finalDay)
+        }
+        schedule = newDay
+        
+        for schGame in schedule{
+            print("Day:\(schGame.dayNumber) \(schGame.scheduledGames)")
+        }
+    }
+    
     /// Takes two random teams and runs a game agaisnt each other
-    func setUpGames(){
+    func setUpGames() -> game{
         let team1 = teams[Int.random(in: 0...9)]
         let team2 = teams[Int.random(in: 0...9)]
         if team1.name != team2.name{
-            let game = game(homeTeam: team1, awayTeam: team2)
-            game.runGame()
+            let games = game(homeTeam: team1, awayTeam: team2)
+            return games
+            //game.runGame()
         }else{
-            setUpGames()
+            return setUpGames()
         }
     }
     /// Takes two teams and runs a game against eachother
@@ -84,6 +112,7 @@ func makeLeague() -> league{
         tempAgents.append(agent)
         
     }
+    
     
     return league(teams: tempTeamArr, freeAgent: tempAgents)
 }

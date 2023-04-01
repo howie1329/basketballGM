@@ -24,6 +24,11 @@ struct MainTabView: View {
                     Image(systemName: "basket")
                     Text("Free Agents")
                 }
+            leaugeView()
+                .tabItem {
+                    Image(systemName: "list.bullet")
+                    Text("Schedule")
+                }
         }
     }
 }

@@ -36,8 +36,9 @@ struct playerStats{
 
 /// Game class
 ///  - Holds home and away teams and handles simulation of game
-class game{
+class game: Identifiable{
     
+    var id:UUID
     var homeScore:Int
     var awayScore:Int
     var homeTeam:team
@@ -45,6 +46,7 @@ class game{
     var boxScore: [UUID:playerStats]
     
     init(homeTeam: team, awayTeam: team) {
+        id = UUID()
         homeScore = 0
         awayScore = 0
         boxScore = [:]

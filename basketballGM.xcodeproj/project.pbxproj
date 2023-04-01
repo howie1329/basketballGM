@@ -20,6 +20,7 @@
 		F3FF6B3C29D2AE1500A587F4 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF6B3B29D2AE1500A587F4 /* MainTabView.swift */; };
 		F3FF6B3E29D2AE7D00A587F4 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF6B3D29D2AE7D00A587F4 /* GameView.swift */; };
 		F3FF6B4029D3F86100A587F4 /* FreeAgentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF6B3F29D3F86100A587F4 /* FreeAgentView.swift */; };
+		F3FF6B4229D7BA3D00A587F4 /* leaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FF6B4129D7BA3D00A587F4 /* leaugeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		F3FF6B3B29D2AE1500A587F4 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		F3FF6B3D29D2AE7D00A587F4 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		F3FF6B3F29D3F86100A587F4 /* FreeAgentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeAgentView.swift; sourceTree = "<group>"; };
+		F3FF6B4129D7BA3D00A587F4 /* leaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = leaugeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				F3FF6B3B29D2AE1500A587F4 /* MainTabView.swift */,
 				F3FF6B3D29D2AE7D00A587F4 /* GameView.swift */,
 				F3FF6B3F29D3F86100A587F4 /* FreeAgentView.swift */,
+				F3FF6B4129D7BA3D00A587F4 /* leaugeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				F3FF6B3629D296D400A587F4 /* DataModel.swift in Sources */,
 				F3FF6B1229D118CF00A587F4 /* ContentView.swift in Sources */,
 				F3FF6B2E29D1504700A587F4 /* playerModel.swift in Sources */,
+				F3FF6B4229D7BA3D00A587F4 /* leaugeView.swift in Sources */,
 				F3FF6B3E29D2AE7D00A587F4 /* GameView.swift in Sources */,
 				F3FF6B3029D1511100A587F4 /* teamModel.swift in Sources */,
 				F3FF6B3229D1530700A587F4 /* gameModel.swift in Sources */,
