@@ -23,6 +23,8 @@ class team: Identifiable{
     /// Roster of team... an array filled with ``player`` classes
     var roster: [player]
     var capRoom: Int
+    var winRecord: Int
+    var loseRecord: Int
     
     
     
@@ -37,6 +39,8 @@ class team: Identifiable{
         self.outsideDefense = outsideDefense
         self.roster = roster
         self.capRoom = capRoom
+        winRecord = 0
+        loseRecord = 0
     }
     
     /// prints ``roster`` to the console

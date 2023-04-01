@@ -11,30 +11,46 @@ struct ContentView: View {
     @EnvironmentObject var model: DataModel
     var body: some View {
         NavigationView{
-            VStack {
-                List{
-                    ForEach(model.currentLeague.teams){item in
-                        NavigationLink {
-                            TeamRosterView(currentTeam: item)
-                        } label: {
-                            VStack(alignment:.center){
-                                Text(item.name)
-                                    .font(.headline)
-                                HStack{
-                                    Text("Offense: \(item.offense)")
-                                    Text("Defense: \(item.defense)")
-                                    Text("Overall: \((item.offense + item.defense) / 2)")
+            ZStack{
+                VStack {
+                    Text("Day Counter: \(model.currentLeague.currentDay) / \(model.currentLeague.endDay)")
+                    List{
+                        ForEach(model.currentLeague.teams){item in
+                            NavigationLink {
+                                TeamRosterView(currentTeam: item)
+                            } label: {
+                                VStack(alignment:.center){
+                                    Text(item.name)
+                                        .font(.headline)
+                                    Text("\(item.winRecord) - \(item.loseRecord)")
+                                    HStack{
+                                        Text("Offense: \(item.offense)")
+                                        Text("Defense: \(item.defense)")
+                                        Text("Overall: \((item.offense + item.defense) / 2)")
+                                    }
+                                    .frame(maxWidth:.infinity)
                                 }
-                                .frame(maxWidth:.infinity)
+                                
                             }
-                            
                         }
                     }
+                    Button{
+                        model.currentLeague.playTodaysGames()
+                        model.update()
+                    } label: {
+                        Text("Sim Day")
+                            .frame(maxWidth:.infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .padding(.horizontal)
+                    
                 }
+                .onAppear(perform: {
+                    model.update()
+                })
+                
+
             }
-            .onAppear(perform: {
-                model.update()
-            })
         }
     }
 }

@@ -12,13 +12,32 @@ struct leaugeView: View {
     var body: some View {
         VStack{
             List{
-                ForEach(model.currentLeague.schedule, id:\.dayNumber){day in
+                ForEach(model.currentLeague.schedule, id:\.id){day in
                     Section(header:Text("\(day.dayNumber)")){
-                        ForEach(day.scheduledGames){gamess in
-                            Text("\(gamess.homeTeam.name) vs \(gamess.awayTeam.name)")
+                        ForEach(day.scheduledGames, id:\.id){gamess in
+                            if gamess.playedGame{
+                                Text("\(gamess.homeTeam.name): \(gamess.homeScore) vs. \(gamess.awayTeam.name): \(gamess.awayScore)")
+                            }else{
+                                
+                                HStack{
+                                    Text("\(gamess.homeTeam.name) vs \(gamess.awayTeam.name)")
+                                    Button {
+                                        gamess.runGame()
+                                        model.update()
+                                    } label: {
+                                        Image(systemName: "checkmark.circle")
+                                    }
+                                }
+                                
+
+                            }
+                            
                         }
                     }
                 }
+            }
+            .refreshable {
+                model.update()
             }
         }
     }

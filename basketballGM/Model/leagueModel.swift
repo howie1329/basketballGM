@@ -7,23 +7,28 @@
 
 import Foundation
 
-struct days{
+struct days:Identifiable{
     
+    var id: UUID
     var dayNumber:Int
     var scheduledGames:[game]
 }
 
 /// League class which holds an array of teams and a array of games
-class league{
+class league: ObservableObject{
     var teams: [team]
     var games:[game]
     var freeAgents:[player]
-    var schedule: [days] = []
+    var currentDay:Int
+    var endDay:Int
+    @Published var schedule: [days] = []
     
     init(teams: [team], freeAgent: [player] = []) {
         self.teams = teams
         self.games = [game]()
         self.freeAgents = freeAgent
+        currentDay = 0
+        endDay = 0
         setSchedule()
     }
     
@@ -33,19 +38,35 @@ class league{
         }
     }
     
+    func playTodaysGames(){
+        if currentDay != endDay{
+            var todaysGames = schedule[currentDay].scheduledGames
+            
+            for g in todaysGames{
+                g.runGame()
+            }
+            currentDay += 1
+        }else{
+            setSchedule()
+        }
+    }
+    
     func setSchedule(){
         var newDay:[days] = []
-        for day in 0...9{
+        for day in 0...20{
             var dayGame:[game] = []
-            var finalDay:days = days(dayNumber: 0, scheduledGames: [])
-            for games in 0...4{
+            var finalDay:days = days(id: UUID(), dayNumber: 0, scheduledGames: [])
+            for games in 0...10{
                 var newGame = setUpGames()
                 dayGame.append(newGame)
-                finalDay = days(dayNumber: day, scheduledGames: dayGame)
+                finalDay = days(id: UUID(), dayNumber: day, scheduledGames: dayGame)
             }
             newDay.append(finalDay)
         }
         schedule = newDay
+        currentDay = 0
+        endDay = schedule.count
+        
         
         for schGame in schedule{
             print("Day:\(schGame.dayNumber) \(schGame.scheduledGames)")

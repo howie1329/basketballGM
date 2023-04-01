@@ -36,14 +36,15 @@ struct playerStats{
 
 /// Game class
 ///  - Holds home and away teams and handles simulation of game
-class game: Identifiable{
+class game: Identifiable, ObservableObject{
     
     var id:UUID
-    var homeScore:Int
-    var awayScore:Int
+    @Published var homeScore:Int
+    @Published var awayScore:Int
     var homeTeam:team
     var awayTeam:team
-    var boxScore: [UUID:playerStats]
+    @Published var boxScore: [UUID:playerStats]
+    @Published var playedGame:Bool = false
     
     init(homeTeam: team, awayTeam: team) {
         id = UUID()
@@ -87,6 +88,16 @@ class game: Identifiable{
         return 0
     }
     
+    func updateRecord(){
+        if homeScore > awayScore{
+            homeTeam.winRecord += 1
+            awayTeam.loseRecord += 1
+        }else{
+            awayTeam.winRecord += 1
+            homeTeam.loseRecord += 1
+        }
+    }
+    
     /// Simulate game
     ///
     /// - Returns:  A tuple that includes an array that holds all players UUID and playerStats, homeScore, awayScore
@@ -118,10 +129,15 @@ class game: Identifiable{
             print("\(boxScore[player.id])\n \(player.insideShotRating) \(player.outsideShotRating)")
         }
         
+        playedGame = true
+        updateRecord()
+        
         return (boxScore , homeScore ,awayScore)
         
     }
 }
+
+
 
 
 
